@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b100c">
+  <meta name="description" content="Tecnologías de Agente MILLER 0.1.0: lenguaje, bibliotecas, modelos de voz y lenguaje, herramientas de empaquetado y dónde se usan en el código.">
+  <title>Tecnologías · Agente MILLER</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pagina">
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Agente MILLER, inicio"><span class="brand-mark">M</span><span>AGENTE MILLER<span class="brand-sub">ASISTENTE DE VOZ LOCAL</span></span></a>
+  <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <nav class="nav">
+    <a href="index.html#capacidades">Funciones</a>
+    <a href="index.html#llaves">Permisos</a>
+    <a href="descargas.html">Descargas</a>    <a href="instalacion.html">Instalación</a>
+    <a href="documentacion.html">Documentación</a>
+    <a href="tecnologias.html" aria-current="page">Tecnologías</a>
+  </nav>
+</header>
+
+<main class="section pagina-contenido">
+  <div class="section-kicker">TECNOLOGÍAS · VERSIÓN 0.1.0</div>
+  <h1 class="titulo-pagina">Lo que usa<br><em>Agente MILLER.</em></h1>
+  <p class="lead">Todas las piezas son bibliotecas abiertas o herramientas estándar de Windows. La columna «Dónde» indica el archivo del proyecto donde se usa cada una.</p>
+
+  <h2 id="base">Base y lenguaje</h2>
+  <div class="tabla-wrap"><table class="tabla">
+    <thead><tr><th>Tecnología</th><th>Versión</th><th>Para qué</th><th>Dónde</th></tr></thead>
+    <tbody>
+      <tr><td>Python</td><td>3.13 de 64 bits</td><td>Lenguaje de todo el programa.</td><td>Todo el proyecto</td></tr>
+      <tr><td>Tkinter</td><td>Incluida con Python</td><td>Ventanas: la esencia, el panel, ENTORNO, DOCUMENTOS y el asistente de instalación.</td><td><code>interfaz/</code>, <code>empaquetado/instalador.py</code></td></tr>
+      <tr><td>ttkbootstrap</td><td>2.2.7</td><td>Tema visual y widgets ttk de la interfaz.</td><td><code>interfaz/estilo.py</code></td></tr>
+      <tr><td>Pillow</td><td>13.0.0</td><td>Imágenes, miniaturas de vídeo y el orbe de la esencia.</td><td><code>interfaz/esencia.py</code>, <code>utilidades/video.py</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="audio">Voz, audio y música</h2>
+  <div class="tabla-wrap"><table class="tabla">
+    <thead><tr><th>Tecnología</th><th>Versión</th><th>Para qué</th><th>Dónde</th></tr></thead>
+    <tbody>
+      <tr><td>Vosk</td><td>0.3.45 · modelo vosk-model-small-es-0.42</td><td>Reconocimiento de voz local en español.</td><td><code>voz/escuchador.py</code></td></tr>
+      <tr><td>PyAudio</td><td>0.2.14</td><td>Captura del micrófono.</td><td><code>voz/escuchador.py</code></td></tr>
+      <tr><td>Piper (piper-tts)</td><td>1.3.0 · voz es_ES-davefx-medium</td><td>Voz neuronal masculina en español, local.</td><td><code>voz/voz_neural.py</code></td></tr>
+      <tr><td>ONNX Runtime</td><td>1.31.1</td><td>Motor que ejecuta la voz de Piper.</td><td><code>voz/voz_neural.py</code></td></tr>
+      <tr><td>pyttsx3</td><td>2.99</td><td>Voz de Windows (SAPI5), como alternativa a Piper.</td><td><code>voz/hablador.py</code></td></tr>
+      <tr><td>pygame</td><td>2.6.1</td><td>Reproductor de audio, fundidos y mezcla.</td><td><code>audio/reproductor.py</code></td></tr>
+      <tr><td>FFmpeg y ffprobe</td><td>Compilación GPL de BtbN (master, 64 bits)</td><td>Medir, reparar y convertir audio; comprobar vídeos.</td><td><code>modelos/ffmpeg-master-gpl/</code>, <code>audio/supervisor_biblioteca.py</code></td></tr>
+      <tr><td>yt-dlp</td><td>2026.10.21</td><td>Descarga de música (solo YouTube y SoundCloud).</td><td><code>utilidades/descargar_musica.py</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="inteligencia">Comprensión y modelos de lenguaje</h2>
+  <div class="tabla-wrap"><table class="tabla">
+    <thead><tr><th>Tecnología</th><th>Versión</th><th>Para qué</th><th>Dónde</th></tr></thead>
+    <tbody>
+      <tr><td>NumPy</td><td>2.4.2</td><td>Red de intenciones: aprende de los ejemplos y de sus correcciones.</td><td><code>cerebro/red_intenciones.py</code></td></tr>
+      <tr><td>llama-cpp-python</td><td>0.3.36</td><td>Ejecuta los modelos Qwen 2.5 en formato GGUF, sin conexión.</td><td><code>utilidades/modelos_ia.py</code></td></tr>
+      <tr><td>Qwen 2.5 y Qwen 2.5 Coder</td><td>1.5B o 3B, cuantización Q4_K_M</td><td>Complementos opcionales: órdenes difíciles, conversación y ayuda con código en DOCUMENTOS.</td><td><code>cerebro/lenguaje_ia.py</code>, <code>utilidades/asistente_codigo.py</code></td></tr>
+    </tbody>
+  </table></div>
+  <p class="nota">Las reglas de MILLER deciden primero. Los modelos de lenguaje solo entran cuando las reglas y la red no entienden la orden.</p>
+
+  <h2 id="empaquetado">Empaquetado e instalador</h2>
+  <div class="tabla-wrap"><table class="tabla">
+    <thead><tr><th>Tecnología</th><th>Versión</th><th>Para qué</th><th>Dónde</th></tr></thead>
+    <tbody>
+      <tr><td>PyInstaller</td><td>6.22.3</td><td>Convierte el programa en <code>agenteM.exe</code>, en modo carpeta y sin consola.</td><td><code>empaquetado/agenteM.spec</code></td></tr>
+      <tr><td>Asistente de instalación propio</td><td>Tkinter y la biblioteca estándar</td><td>Instalador y desinstalador, con accesos directos por WScript.Shell y registro de «Aplicaciones instaladas» en HKCU.</td><td><code>empaquetado/instalador.py</code></td></tr>
+      <tr><td>zipfile</td><td>Biblioteca estándar</td><td>El paquete de instalación (<code>paquete.zip</code>) con control de rutas.</td><td><code>empaquetado/construir.py</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="seguridad">Seguridad</h2>
+  <div class="tabla-wrap"><table class="tabla">
+    <thead><tr><th>Mecanismo</th><th>Para qué</th><th>Dónde</th></tr></thead>
+    <tbody>
+      <tr><td>HMAC-SHA256</td><td>Firma de los archivos de datos y del registro de llaves.</td><td><code>utilidades/seguridad.py</code></td></tr>
+      <tr><td>PBKDF2-HMAC-SHA256 (200 000 iteraciones)</td><td>Huella de la llave PRO, sin guardarla en claro.</td><td><code>utilidades/acceso.py</code></td></tr>
+      <tr><td>SHA-256</td><td>Huella de cada archivo del programa al sellar el código.</td><td><code>utilidades/seguridad.py</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="web">Este sitio</h2>
+  <p>Esta documentación es una web estática: HTML5, CSS3 y JavaScript sin frameworks ni proceso de compilación. Las tipografías Manrope y DM Mono se cargan desde Google Fonts. La carpeta <code>webagenteM</code> dentro del proyecto contiene todos sus archivos.</p>
+  <p class="nota">La tipografía Bahnschrift, usada por la interfaz del programa, viene incluida con Windows 10 y Windows 11.</p>
+</main>
+
+<footer class="footer">
+  <a class="brand" href="index.html"><span class="brand-mark">M</span><span>AGENTE MILLER<span class="brand-sub">ASISTENTE DE VOZ LOCAL</span></span></a>
+  <p>Documentación oficial de Agente MILLER 0.1.0 para Windows.</p>
+  <div><a href="descargas.html">Descargas</a><a href="instalacion.html">Instalación</a><a href="documentacion.html">Documentación</a><a href="tecnologias.html">Tecnologías</a><span>© <span id="year"></span></span></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite">Copiado al portapapeles</div>
+<script src="script.js"></script>
+</body>
+</html>

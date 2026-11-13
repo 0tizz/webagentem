@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b100c">
+  <meta name="description" content="Descargas oficiales de Agente MILLER 0.1.0: instalador de Windows, sumas de comprobación y modelos con sus fuentes oficiales.">
+  <title>Descargas · Agente MILLER</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pagina">
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Agente MILLER, inicio"><span class="brand-mark">M</span><span>AGENTE MILLER<span class="brand-sub">ASISTENTE DE VOZ LOCAL</span></span></a>
+  <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <nav class="nav">
+    <a href="index.html#capacidades">Capacidades</a>
+    <a href="descargas.html" aria-current="page">Descargas</a>
+    <a href="instalacion.html">Instalación</a>
+    <a href="documentacion.html">Documentación</a>
+    <a href="tecnologias.html">Tecnologías</a>
+  </nav>
+</header>
+
+<main class="section pagina-contenido">
+  <div class="section-kicker">DESCARGAS · VERSIÓN 0.1.0</div>
+  <h1 class="titulo-pagina">Descargue<br><em>Agente MILLER.</em></h1>
+  <p class="lead">Un solo archivo instala el programa completo. Antes de ejecutarlo, compruebe su suma SHA-256 para asegurarse de que no se ha alterado.</p>
+
+  <h2 id="instalador">Instalador de Windows</h2>
+  <div class="archivo-card">
+    <div class="archivo-info">
+      <span class="etiqueta-archivo">RECOMENDADO · WINDOWS 11 64 BITS</span>
+      <h3>Instalar_AgenteMILLER_0.1.0.exe</h3>
+      <p>Trae el programa, sus librerías, la voz de MILLER, el reconocimiento de voz y FFmpeg. Incluye el desinstalador. No descarga nada durante la instalación.</p>
+      <dl class="datos-archivo">
+        <div><dt>Tamaño</dt><dd>345 MB</dd></div>
+        <div><dt>Instalado</dt><dd>unos 712 MB</dd></div>
+        <div><dt>Versión</dt><dd>0.1.0</dd></div>
+      </dl>
+    </div>
+    <div class="archivo-accion">
+      <span class="proximamente">Enlace de descarga pendiente de publicar</span>
+      <p class="nota">Se publicará como archivo de una versión en GitHub Releases.</p>
+    </div>
+  </div>
+
+  <h3 class="subtitulo">Suma SHA-256 del instalador</h3>
+  <pre class="bloque hash"><code>3FB8DEA4E2C65E7BBEAA262854F66C24C50FB1706E6ACF839F2CB9AD511B0684  Instalar_AgenteMILLER_0.1.0.exe</code><button class="copy" data-copy="3FB8DEA4E2C65E7BBEAA262854F66C24C50FB1706E6ACF839F2CB9AD511B0684" aria-label="Copiar suma">COPIAR</button></pre>
+  <p>Para comprobarla, en PowerShell, desde la carpeta donde guardó el archivo:</p>
+  <pre class="bloque"><code>Get-FileHash .\Instalar_AgenteMILLER_0.1.0.exe -Algorithm SHA256</code><button class="copy" data-copy="Get-FileHash .\Instalar_AgenteMILLER_0.1.0.exe -Algorithm SHA256" aria-label="Copiar comando">COPIAR</button></pre>
+  <p class="nota">El valor debe coincidir letra por letra. Si no coincide, no lo ejecute y vuelva a descargarlo.</p>
+
+  <h2 id="modelos">Modelos y componentes</h2>
+  <p>El instalador ya incluye los componentes marcados como <b>incluido</b>. Los demás son opcionales y se añaden desde la propia aplicación o desde su fuente oficial.</p>
+  <div class="tabla-wrap"><table class="tabla tabla-modelos">
+    <thead><tr><th>Componente</th><th>Archivo o nombre exacto</th><th>Tamaño aprox.</th><th>Dónde está</th><th>Para qué</th></tr></thead>
+    <tbody>
+      <tr><td><b>Reconocimiento de voz</b> <span class="chip">incluido</span></td><td><code>vosk-model-small-es-0.42</code></td><td>40 MB</td><td><a href="https://alphacephei.com/vosk/models">alphacephei.com/vosk/models</a></td><td>Entender las órdenes en español.</td></tr>
+      <tr><td><b>Voz masculina en español</b> <span class="chip">incluido</span></td><td><code>es_ES-davefx-medium</code> (Piper)</td><td>65 MB</td><td><a href="https://github.com/k2-fsa/sherpa-onnx/releases">sherpa-onnx, versión tts-models</a></td><td>La voz de MILLER.</td></tr>
+      <tr><td><b>FFmpeg y ffprobe</b> <span class="chip">incluido</span></td><td><code>ffmpeg-master-latest-win64-gpl</code></td><td>130 MB</td><td><a href="https://github.com/BtbN/FFmpeg-Builds/releases">BtbN/FFmpeg-Builds</a></td><td>Medir, reparar y descargar música.</td></tr>
+      <tr><td><b>Qwen 2.5 general</b> <span class="chip chip-opcional">opcional</span></td><td><code>qwen2.5-1.5b-instruct-q4_k_m.gguf</code> o <code>qwen2.5-3b-instruct-q4_k_m.gguf</code></td><td>Más de 1 GB (1.5B)</td><td><a href="https://huggingface.co/Qwen">Organización Qwen en Hugging Face</a></td><td>Órdenes difíciles y conversación.</td></tr>
+      <tr><td><b>Qwen 2.5 Coder</b> <span class="chip chip-opcional">opcional</span></td><td><code>qwen2.5-coder-1.5b-instruct-q4_k_m.gguf</code> o <code>qwen2.5-coder-3b-instruct-q4_k_m.gguf</code></td><td>Más de 1 GB (1.5B)</td><td><a href="https://huggingface.co/Qwen">Organización Qwen en Hugging Face</a></td><td>Ayuda con archivos de código en DOCUMENTOS.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="aviso-callout">
+    <b>Nombres exactos.</b>
+    <p>MILLER solo acepta los nombres de la tabla, sin cambiar ni una letra. Busque el archivo en la página oficial, descárguelo y súbalo en PERFIL › COMPLEMENTOS IA. Los tamaños son aproximados y dependen de la versión publicada.</p>
+    <p><b>Licencias.</b> Cada modelo tiene su ficha y sus condiciones de uso; antes de redistribuirlo, revise la ficha oficial. FFmpeg se distribuye bajo GPL.</p>
+  </div>
+
+  <h2 id="comprobar">Comprobar la instalación</h2>
+  <p>Tras instalar, en PERFIL › INSTALACIÓN pulse COMPROBAR ESTADO. Debe aparecer <b>TODO INSTALADO</b> con los 9 componentes en verde. La guía completa está en <a href="instalacion.html">Instalación</a>.</p>
+</main>
+
+<footer class="footer">
+  <a class="brand" href="index.html"><span class="brand-mark">M</span><span>AGENTE MILLER<span class="brand-sub">ASISTENTE DE VOZ LOCAL</span></span></a>
+  <p>Documentación oficial de Agente MILLER 0.1.0 para Windows.</p>
+  <div><a href="descargas.html">Descargas</a><a href="instalacion.html">Instalación</a><a href="documentacion.html">Documentación</a><a href="tecnologias.html">Tecnologías</a><span>© <span id="year"></span></span></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite">Copiado al portapapeles</div>
+<script src="script.js"></script>
+</body>
+</html>

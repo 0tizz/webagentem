@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b100c">
+  <meta name="description" content="Cómo instalar y ejecutar Agente MILLER 0.1.0 en Windows: instalador, primer arranque, actualización y desinstalación.">
+  <title>Instalación · Agente MILLER</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pagina">
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Agente MILLER, inicio"><span class="brand-mark">M</span><span>AGENTE MILLER<span class="brand-sub">ASISTENTE DE VOZ LOCAL</span></span></a>
+  <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <nav class="nav">
+    <a href="index.html#capacidades">Funciones</a>
+    <a href="index.html#llaves">Permisos</a>
+    <a href="descargas.html">Descargas</a>    <a href="instalacion.html" aria-current="page">Instalación</a>
+    <a href="documentacion.html">Documentación</a>
+    <a href="tecnologias.html">Tecnologías</a>
+  </nav>
+</header>
+
+<main class="section pagina-contenido">
+  <div class="section-kicker">PUESTA EN MARCHA · VERSIÓN 0.1.0</div>
+  <h1 class="titulo-pagina">Instalar Agente MILLER<br><em>y ejecutarlo.</em></h1>
+  <p class="lead">Elija la forma de instalación que le convenga. La recomendada para uso diario es el instalador de Windows. El código fuente es para quien quiera revisar o modificar el programa.</p>
+
+  <nav class="indice-rapido" aria-label="Contenido de la página">
+    <a href="#requisitos">Requisitos</a><a href="#instalador">A · Instalador</a><a href="#codigo">B · Código fuente</a><a href="#primer-arranque">Primer arranque</a><a href="#actualizar">Actualizar y desinstalar</a><a href="#problemas">Problemas frecuentes</a>
+  </nav>
+
+  <h2 id="requisitos">Requisitos</h2>
+  <div class="tabla-wrap"><table class="tabla">
+    <thead><tr><th>Concepto</th><th>Qué se necesita</th></tr></thead>
+    <tbody>
+      <tr><td>Sistema</td><td>Windows 11 de 64 bits (la versión probada).</td></tr>
+      <tr><td>Espacio del programa</td><td>Unos 712 MB para el programa y sus modelos de voz y de música. Se suma su música y sus archivos.</td></tr>
+      <tr><td>Micrófono</td><td>Para hablarle. Sin micrófono MILLER funciona igual escribiendo en la terminal de ENTORNO.</td></tr>
+      <tr><td>Permisos</td><td>Ninguno de administrador: se instala para su usuario.</td></tr>
+      <tr><td>Internet</td><td>No hace falta para instalar ni para la voz, la música o la memoria. Solo lo usan las noticias, las búsquedas y las descargas que usted pide.</td></tr>
+      <tr><td>Solo para el código fuente</td><td>Python 3.13 de 64 bits. PyAudio no tiene instalador para Python 3.14.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="instalador">A · Instalador de Windows <span class="etiqueta">recomendado</span></h2>
+  <ol class="pasos">
+    <li><h3>Abra el archivo</h3><p>Ejecute <code>Instalar_AgenteMILLER_0.1.0.exe</code>. Si Windows muestra «Windows protegió su PC», pulse <b>Más información</b> y después <b>Ejecutar de todas formas</b>. Aparece ese aviso porque el instalador no lleva firma digital de un editor reconocido.</p></li>
+    <li><h3>Bienvenida</h3><p>Lea el espacio necesario y pulse <b>Siguiente</b>.</p></li>
+    <li><h3>Carpeta de instalación</h3><p>La carpeta propuesta es <code>%LOCALAPPDATA%\Programs\Agente MILLER</code>. Puede elegir otra con <b>Examinar…</b>. El asistente no admite la raíz de un disco ni las carpetas de Windows, y comprueba que haya espacio libre.</p></li>
+    <li><h3>Accesos directos</h3><p>Marque si quiere el acceso del escritorio y la carpeta del menú Inicio, que incluye <b>Desinstalar Agente MILLER</b>.</p></li>
+    <li><h3>Instalación</h3><p>Tarda menos de un minuto. No cierre la ventana hasta que diga que está lista.</p></li>
+    <li><h3>Terminar</h3><p>Deje marcado <b>Abrir MILLER ahora</b> para arrancarlo al acabar, o ábralo más tarde desde el escritorio o el menú Inicio.</p></li>
+  </ol>
+  <p class="nota">Para instalar sin ventanas, por ejemplo en varios equipos, use el mismo archivo con estas opciones:</p>
+  <pre class="bloque"><code>Instalar_AgenteMILLER_0.1.0.exe --silencioso --destino "%LOCALAPPDATA%\Programs\Agente MILLER"</code><button class="copy" data-copy='Instalar_AgenteMILLER_0.1.0.exe --silencioso --destino "%LOCALAPPDATA%\Programs\Agente MILLER"' aria-label="Copiar comando">COPIAR</button></pre>
+  <p class="nota">Opciones: <code>--sin-accesos</code> no crea accesos directos y <code>--sin-registro</code> no lo anota en «Aplicaciones instaladas».</p>
+
+  <h2 id="codigo">B · Desde el código fuente</h2>
+  <p>Para desarrolladores. Desde la carpeta raíz del proyecto, en una terminal de Windows:</p>
+  <ol class="pasos">
+    <li><h3>Instale Python 3.13 de 64 bits</h3><p>Descárguelo de python.org y marque la opción de añadirlo al PATH.</p></li>
+    <li><h3>Instale las librerías</h3><pre class="bloque"><code>python -m pip install -r requirements.txt</code><button class="copy" data-copy="python -m pip install -r requirements.txt" aria-label="Copiar comando">COPIAR</button></pre></li>
+    <li><h3>Descargue los modelos</h3><p>Baja el reconocimiento de voz (Vosk), la voz masculina en español (Piper) y FFmpeg, y los deja en <code>modelos\</code>.</p><pre class="bloque"><code>python principal.py --instalar</code><button class="copy" data-copy="python principal.py --instalar" aria-label="Copiar comando">COPIAR</button></pre></li>
+    <li><h3>Compruebe el entorno</h3><pre class="bloque"><code>python utilidades\entorno.py</code><button class="copy" data-copy="python utilidades\entorno.py" aria-label="Copiar comando">COPIAR</button></pre></li>
+    <li><h3>Ponga su música</h3><p>Copie sus canciones en <code>audios\</code>. Los archivos de música no forman parte del proyecto.</p></li>
+    <li><h3>Arranque MILLER</h3><pre class="bloque"><code>python principal.py</code><button class="copy" data-copy="python principal.py" aria-label="Copiar comando">COPIAR</button></pre></li>
+  </ol>
+  <p class="nota"><b>Opcional:</b> el motor de los modelos Qwen 2.5 se instala con:</p>
+  <pre class="bloque"><code>python -m pip install --only-binary=:all: --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu llama-cpp-python</code><button class="copy" data-copy="python -m pip install --only-binary=:all: --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu llama-cpp-python" aria-label="Copiar comando">COPIAR</button></pre>
+  <p class="nota">Después, los archivos de modelo se suben desde <b>PERFIL › COMPLEMENTOS IA</b>. Solo se aceptan los nombres exactos que aparecen en la documentación.</p>
+
+  <h2 id="primer-arranque">Primer arranque</h2>
+  <ol class="pasos">
+    <li><h3>Póngale nombre</h3><p>Al abrirlo por primera vez, MILLER lo saluda y le pide un nombre en <b>PERFIL › INSTALACIÓN</b>. Ese nombre es la palabra de activación y se pone una sola vez. Si lo deja vacío, se llama «Miller».</p></li>
+    <li><h3>Compruebe la instalación</h3><p>En la misma sección, el botón <b>COMPROBAR ESTADO</b> debe mostrar <b>TODO INSTALADO</b> con los 9 componentes en verde.</p></li>
+    <li><h3>Pruebe una orden</h3><p>Diga <b>«Miller, qué hora es»</b>. Si no tiene micrófono, escriba la misma frase en la <b>TERMINAL</b> de la página ENTORNO.</p></li>
+    <li><h3>Ponga su música</h3><p>Copie canciones en la carpeta <code>audios</code> de la instalación o añádalas desde ENTORNO. Luego diga <b>«Miller, pon música»</b>.</p></li>
+    <li><h3>Llaves (opcional)</h3><p>Las llaves BOY y PRO se ponen en <b>PERFIL › LLAVES</b> o en la terminal con <code>acceso &lt;llave&gt;</code>. Sin ellas, MILLER funciona en modo FREE. Cada llave se pone una sola vez.</p></li>
+  </ol>
+
+  <h2 id="actualizar">Actualizar y desinstalar</h2>
+  <div class="dos-columnas">
+    <div class="tarjeta-texto">
+      <h3>Actualizar</h3>
+      <p>Ejecute el instalador nuevo. Elija la misma carpeta y se actualiza el programa. Sus datos, su música y sus modelos Qwen no se tocan.</p>
+    </div>
+    <div class="tarjeta-texto">
+      <h3>Desinstalar</h3>
+      <p>Desde el menú Inicio, en <b>Agente MILLER › Desinstalar</b>, o en <b>Configuración › Aplicaciones instaladas</b>. Por defecto se conservan sus datos, su música y los modelos Qwen. Marque la casilla para borrarlo todo; no se puede deshacer.</p>
+    </div>
+  </div>
+
+  <h2 id="problemas">Problemas frecuentes</h2>
+  <div class="tabla-wrap"><table class="tabla">
+    <thead><tr><th>Lo que ve</th><th>Qué hacer</th></tr></thead>
+    <tbody>
+      <tr><td>«Windows protegió su PC»</td><td>Pulse <b>Más información › Ejecutar de todas formas</b>. Es el aviso por editor no verificado.</td></tr>
+      <tr><td>«MILLER ya está abierto»</td><td>Solo puede haber un MILLER abierto. Búsquelo en la barra de tareas.</td></tr>
+      <tr><td>No me entiende</td><td>Revise el micrófono predeterminado de Windows. Mientras tanto, escriba la orden en la terminal de ENTORNO.</td></tr>
+      <tr><td>La voz o el reconocimiento no están disponibles</td><td>En PERFIL › INSTALACIÓN, pulse COMPROBAR ESTADO. Lo que aparezca en rojo falta; INSTALAR LO QUE FALTA lo descarga.</td></tr>
+      <tr><td>Algo falla al arrancar</td><td>Abra <code>datos\registro\agenteM.log</code> dentro de la carpeta de instalación. Ahí quedan los mensajes del programa.</td></tr>
+      <tr><td>La primera respuesta de Qwen tarda</td><td>Es normal: la primera vez el modelo se carga (unos 30 s). Sale de la memoria tras 20 minutos sin usarlo.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="preguntas">Preguntas frecuentes</h2>
+  <div class="faq-list">
+    <details><summary>¿Dónde se guardan mis datos?</summary><p>Dentro de la carpeta de instalación: <code>datos\</code> (recuerdos, llaves puestas, nombre y ajustes), <code>audios\</code> (su música) y <code>modelos\ia\</code> (los modelos Qwen).</p></details>
+    <details><summary>¿Puedo instalarlo en otro equipo?</summary><p>Sí. Copie el mismo instalador. Cada equipo empieza con sus propios datos y sus propias llaves.</p></details>
+    <details><summary>¿Lo que digo se envía a internet?</summary><p>No. La voz, la memoria y los comandos se procesan en su equipo. Solo las noticias, las búsquedas y las descargas usan internet, y únicamente cuando usted las pide.</p></details>
+    <details><summary>¿Qué versión de Windows necesito?</summary><p>Windows 11 de 64 bits, que es la versión donde se ha probado el programa instalado.</p></details>
+  </div>
+</main>
+
+<footer class="footer">
+  <a class="brand" href="index.html"><span class="brand-mark">M</span><span>AGENTE MILLER<span class="brand-sub">ASISTENTE DE VOZ LOCAL</span></span></a>
+  <p>Documentación oficial de Agente MILLER 0.1.0 para Windows.</p>
+  <div><a href="descargas.html">Descargas</a><a href="instalacion.html">Instalación</a><a href="documentacion.html">Documentación</a><a href="tecnologias.html">Tecnologías</a><span>© <span id="year"></span></span></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite">Copiado al portapapeles</div>
+<script src="script.js"></script>
+</body>
+</html>

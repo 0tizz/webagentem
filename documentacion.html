@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b100c">
+  <meta name="description" content="Documentación oficial de Agente MILLER 0.1.0: órdenes de voz, ENTORNO, llaves y permisos, espacio, aprendizaje, modelos, seguridad, datos y compilación.">
+  <title>Documentación oficial · Agente MILLER</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pagina">
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Agente MILLER, inicio"><span class="brand-mark">M</span><span>AGENTE MILLER<span class="brand-sub">ASISTENTE DE VOZ LOCAL</span></span></a>
+  <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <nav class="nav">
+    <a href="index.html#capacidades">Funciones</a>
+    <a href="index.html#llaves">Permisos</a>
+    <a href="descargas.html">Descargas</a>    <a href="instalacion.html">Instalación</a>
+    <a href="documentacion.html" aria-current="page">Documentación</a>
+    <a href="tecnologias.html">Tecnologías</a>
+  </nav>
+</header>
+
+<div class="doc-layout section">
+  <aside class="doc-indice" aria-label="Índice de la documentación">
+    <div class="aside-label">DOCUMENTACIÓN OFICIAL</div>
+    <ol>
+      <li><a href="#resumen">1. Resumen</a></li>
+      <li><a href="#voz">2. Hablar con MILLER</a></li>
+      <li><a href="#ordenes">3. Órdenes de voz</a></li>
+      <li><a href="#entorno">4. ENTORNO</a></li>
+      <li><a href="#llaves">5. Llaves y permisos</a></li>
+      <li><a href="#espacio">6. Espacio</a></li>
+      <li><a href="#aprendizaje">7. Aprendizaje</a></li>
+      <li><a href="#modelos">8. Modelos opcionales</a></li>
+      <li><a href="#seguridad">9. Seguridad</a></li>
+      <li><a href="#datos">10. Datos y purga</a></li>
+      <li><a href="#estructura">11. Estructura</a></li>
+      <li><a href="#compilar">12. Crear el programa</a></li>
+      <li><a href="#pruebas">13. Pruebas</a></li>
+      <li><a href="#registro">14. Registro y fallos</a></li>
+      <li><a href="#biblioteca">15. Biblioteca y supervisor</a></li>
+      <li><a href="#configuracion">16. Configuración</a></li>
+      <li><a href="#cambios">17. Cambios de 0.1.0</a></li>
+    </ol>
+  </aside>
+
+  <article class="doc">
+    <h1 class="titulo-pagina">Documentación de<br><em>Agente MILLER 0.1.0.</em></h1>
+
+    <h2 id="resumen">1. Resumen</h2>
+    <p>Agente MILLER es un asistente de voz para Windows que funciona en el propio equipo. Entiende órdenes en español, responde con voz, reproduce su música, gestiona su biblioteca, abre programas y archivos del catálogo seguro, y recuerda lo que usted le enseña. Tiene una ventana propia (la esencia) y una página de control (MILLER), que a su vez tiene las secciones PERFIL y ENTORNO.</p>
+    <table class="tabla">
+      <tbody>
+        <tr><th>Versión</th><td>0.1.0</td></tr>
+        <tr><th>Sistema</th><td>Windows 11 de 64 bits</td></tr>
+        <tr><th>Lenguaje</th><td>Python 3.13</td></tr>
+        <tr><th>Instalación</th><td>Instalador de Windows o código fuente (ver <a href="instalacion.html">Instalación</a>)</td></tr>
+        <tr><th>Permisos</th><td>FREE (sin llave), BOY y PRO</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="voz">2. Hablar con MILLER</h2>
+    <ul>
+      <li><b>Palabra de activación.</b> Es el nombre que puso en el primer arranque. Antes de cada orden, diga su nombre: «Miller, pon música».</li>
+      <li><b>Varias órdenes en una frase.</b> Con la llave PRO puede encadenar hasta tres, separadas por «y luego», «y después», «y también» o «y» entre dos verbos: «Miller, pon música y luego pon una alarma en media hora».</li>
+      <li><b>Modo llamada.</b> «Miller, modo llamada» mantiene la conversación: tras cada respuesta, durante 8 segundos puede seguir hablando sin repetir el nombre. La llamada se cuelga tras 90 segundos de silencio.</li>
+      <li><b>Iniciativa.</b> MILLER puede pedir permiso para hablar por su cuenta («Permiso para hablar, señor»). Responda «Miller adelante», «Miller diga» o «Miller siga» para dejarlo hablar. «No me interrumpas» lo silencia.</li>
+      <li><b>Nunca interrumpe</b> mientras ejecuta una orden.</li>
+    </ul>
+
+    <h2 id="ordenes">3. Órdenes de voz</h2>
+    <p>Las órdenes también se escriben en la terminal de ENTORNO, con el mismo texto. Puede buscar o filtrar la lista. Pulse COPIAR para llevar la frase al portapapeles. Las que dicen <b>(BOY)</b> o <b>(PRO)</b> necesitan esa llave.</p>
+    <div class="buscador-ordenes">
+      <input id="commandSearch" type="search" placeholder="Buscar una orden…" aria-label="Buscar órdenes">
+      <div class="command-tabs" role="tablist">
+        <button class="tab active" data-filter="todos">Todas</button>
+        <button class="tab" data-filter="conversacion">Conversación</button>
+        <button class="tab" data-filter="musica">Música</button>
+        <button class="tab" data-filter="biblioteca">Biblioteca</button>
+        <button class="tab" data-filter="utilidades">Utilidades</button>
+        <button class="tab" data-filter="sistema">Sistema</button>
+      </div>
+    </div>
+    <div class="command-list" id="commandList">
+      <div class="command-row" data-category="conversacion"><span class="command-cat">HABLAR</span><div><b>«Miller, qué hora es»</b><small>La hora local, en 12 horas.</small></div><button class="copy" data-copy="Miller, qué hora es">COPIAR</button></div>
+      <div class="command-row" data-category="conversacion"><span class="command-cat">HABLAR</span><div><b>«Miller, modo llamada»</b><small>Conversación continua sin repetir el nombre.</small></div><button class="copy" data-copy="Miller, modo llamada">COPIAR</button></div>
+      <div class="command-row" data-category="conversacion"><span class="command-cat">MEMORIA</span><div><b>«Miller, recuerda que mi color favorito es verde»</b><small>Guarda un recuerdo para consultarlo después.</small></div><button class="copy" data-copy="Miller, recuerda que mi color favorito es verde">COPIAR</button></div>
+      <div class="command-row" data-category="conversacion"><span class="command-cat">MEMORIA</span><div><b>«Miller, qué has aprendido»</b><small>Resume lo que ha aprendido de usted.</small></div><button class="copy" data-copy="Miller, qué has aprendido">COPIAR</button></div>
+      <div class="command-row" data-category="conversacion"><span class="command-cat">MEMORIA</span><div><b>«Miller, eso no era, era pausa la música»</b><small>Corrige la última orden y la enseña de nuevo.</small></div><button class="copy" data-copy="Miller, eso no era, era pausa la música">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">REPRODUCIR</span><div><b>«Miller, pon música»</b><small>Reproduce la biblioteca.</small></div><button class="copy" data-copy="Miller, pon música">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">REPRODUCIR</span><div><b>«Miller, pon la canción sol»</b><small>Busca y reproduce esa canción.</small></div><button class="copy" data-copy="Miller, pon la canción sol">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">REPRODUCIR</span><div><b>«Miller, pausa»</b> · <b>«Miller, siguiente»</b> · <b>«Miller, anterior»</b><small>Controles básicos del reproductor.</small></div><button class="copy" data-copy="Miller, siguiente">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">REPRODUCIR</span><div><b>«Miller, modo aleatorio»</b> · <b>«Miller, activa repetir»</b><small>Orden aleatorio y repetición (BOY).</small></div><button class="copy" data-copy="Miller, modo aleatorio">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">REPRODUCIR</span><div><b>«Miller, qué está sonando»</b><small>Dice la canción actual.</small></div><button class="copy" data-copy="Miller, qué está sonando">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">VOLUMEN</span><div><b>«Miller, sube el volumen»</b> · <b>«Miller, volumen al 40»</b><small>Con fundido suave, nunca de golpe.</small></div><button class="copy" data-copy="Miller, sube el volumen">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">COLA</span><div><b>«Miller, agrega sol a la cola»</b><small>Añade una canción a la cola.</small></div><button class="copy" data-copy="Miller, agrega sol a la cola">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">COLA</span><div><b>«Miller, muestra la cola»</b> · <b>«Miller, vacía la cola»</b><small>Lista la cola o la deja vacía.</small></div><button class="copy" data-copy="Miller, muestra la cola">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">FAVORITAS</span><div><b>«Miller, me gusta esta canción»</b><small>Marca como favorita la que suena.</small></div><button class="copy" data-copy="Miller, me gusta esta canción">COPIAR</button></div>
+      <div class="command-row" data-category="musica"><span class="command-cat">DESCARGAS</span><div><b>«Miller, descarga sol»</b><small>Baja la canción a la biblioteca (BOY; una a la vez).</small></div><button class="copy" data-copy="Miller, descarga sol">COPIAR</button></div>
+      <div class="command-row" data-category="biblioteca"><span class="command-cat">BIBLIOTECA</span><div><b>«Miller, revisa la biblioteca»</b><small>Busca dañadas, duplicadas y no compatibles.</small></div><button class="copy" data-copy="Miller, revisa la biblioteca">COPIAR</button></div>
+      <div class="command-row" data-category="biblioteca"><span class="command-cat">PAPELERA</span><div><b>«Miller, borra sol»</b><small>La manda a la papelera; no la borra de golpe.</small></div><button class="copy" data-copy="Miller, borra sol">COPIAR</button></div>
+      <div class="command-row" data-category="biblioteca"><span class="command-cat">PAPELERA</span><div><b>«Miller, restaura sol»</b><small>La devuelve a la biblioteca (BOY).</small></div><button class="copy" data-copy="Miller, restaura sol">COPIAR</button></div>
+      <div class="command-row" data-category="biblioteca"><span class="command-cat">PAPELERA</span><div><b>«Miller, vacía la papelera»</b><small>Elimina para siempre tras confirmar (PRO).</small></div><button class="copy" data-copy="Miller, vacía la papelera">COPIAR</button></div>
+      <div class="command-row" data-category="utilidades"><span class="command-cat">ALARMAS</span><div><b>«Miller, pon una alarma a las 9 y 20»</b><small>Crea una alarma a esa hora (reloj de 12 horas).</small></div><button class="copy" data-copy="Miller, pon una alarma a las 9 y 20">COPIAR</button></div>
+      <div class="command-row" data-category="utilidades"><span class="command-cat">ALARMAS</span><div><b>«Miller, alarma en media hora»</b><small>Un aviso dentro de ese tiempo.</small></div><button class="copy" data-copy="Miller, alarma en media hora">COPIAR</button></div>
+      <div class="command-row" data-category="utilidades"><span class="command-cat">ALARMAS</span><div><b>«Miller, quita la alarma de las 2 y 50»</b><small>Quita esa. Si hay varias y no dice la hora, pregunta cuál.</small></div><button class="copy" data-copy="Miller, quita la alarma de las 2 y 50">COPIAR</button></div>
+      <div class="command-row" data-category="utilidades"><span class="command-cat">ALARMAS</span><div><b>«Miller, quita todas las alarmas»</b><small>Cancela todas las alarmas, recordatorios y temporizadores.</small></div><button class="copy" data-copy="Miller, quita todas las alarmas">COPIAR</button></div>
+      <div class="command-row" data-category="utilidades"><span class="command-cat">CÁLCULO</span><div><b>«Miller, cuánto es 25 por 4 más 10»</b><small>Suma, resta, multiplicación, división, potencias, porcentajes y paréntesis.</small></div><button class="copy" data-copy="Miller, cuánto es 25 por 4 más 10">COPIAR</button></div>
+      <div class="command-row" data-category="utilidades"><span class="command-cat">NOTICIAS</span><div><b>«Miller, noticias»</b><small>Últimos titulares. Sin conexión lee las guardadas.</small></div><button class="copy" data-copy="Miller, noticias">COPIAR</button></div>
+      <div class="command-row" data-category="sistema"><span class="command-cat">NAVEGADOR</span><div><b>«Miller, abre netflix en el navegador brave»</b><small>Abre el sitio en Chrome, Edge, Firefox, Brave u Opera.</small></div><button class="copy" data-copy="Miller, abre netflix en el navegador brave">COPIAR</button></div>
+      <div class="command-row" data-category="sistema"><span class="command-cat">NAVEGADOR</span><div><b>«Miller, busca netflix en el navegador»</b><small>Busca en el navegador predeterminado.</small></div><button class="copy" data-copy="Miller, busca netflix en el navegador">COPIAR</button></div>
+      <div class="command-row" data-category="sistema"><span class="command-cat">PROGRAMAS</span><div><b>«Miller, abre la calculadora»</b> · <b>«Miller, cierra la calculadora»</b><small>Solo programas del catálogo seguro.</small></div><button class="copy" data-copy="Miller, abre la calculadora">COPIAR</button></div>
+      <div class="command-row" data-category="sistema"><span class="command-cat">ARCHIVOS</span><div><b>«Miller, busca el archivo informe.pdf»</b><small>Lo busca en sus carpetas y lo muestra en el Explorador.</small></div><button class="copy" data-copy="Miller, busca el archivo informe.pdf">COPIAR</button></div>
+      <div class="command-row" data-category="sistema"><span class="command-cat">ARCHIVOS</span><div><b>«Miller, crea una carpeta proyectos»</b><small>Crea una carpeta nueva.</small></div><button class="copy" data-copy="Miller, crea una carpeta proyectos">COPIAR</button></div>
+      <div class="command-row" data-category="sistema"><span class="command-cat">SISTEMA</span><div><b>«Miller, información del sistema»</b><small>Datos del equipo.</small></div><button class="copy" data-copy="Miller, información del sistema">COPIAR</button></div>
+    </div>
+    <p class="small-note" id="noResults" hidden>No hay órdenes con ese filtro.</p>
+
+    <h2 id="entorno">4. ENTORNO</h2>
+    <p>ENTORNO es la página donde están sus archivos. Tiene estas vistas:</p>
+    <ul>
+      <li><b>Biblioteca musical.</b> Sus canciones, con ♥ para marcar favoritas. Doble clic o clic derecho › Reproducir.</li>
+      <li><b>Documentos.</b> Textos y código, que se leen y editan dentro de MILLER. Incluye PDF, Word, Excel y PowerPoint, dentro del espacio del plan.</li>
+      <li><b>Multimedia.</b> Vídeos para ver dentro de MILLER. Subir vídeos pide la llave BOY.</li>
+      <li><b>Papelera.</b> Lo que se ha mandado a la papelera. Se puede restaurar (BOY) o eliminar para siempre (PRO, con confirmación). Se vacía sola a los 30 días.</li>
+      <li><b>Cola y descargas.</b> La cola de reproducción y el estado de las descargas.</li>
+      <li><b>Terminal.</b> Un campo para escribir las órdenes con el mismo texto que se dice en voz.</li>
+    </ul>
+    <p>El clic derecho muestra solo las opciones que sirven para lo seleccionado. Lo que MILLER está sonando o tiene en la cola no se mueve ni se borra.</p>
+
+    <h2 id="llaves">5. Llaves y permisos</h2>
+    <p>Las llaves son permisos que se suman. Sin llave, MILLER funciona en modo FREE. La llave BOY potencia FREE; la llave PRO da el permiso total y no necesita la BOY. Cada llave se pone una sola vez y queda puesta en el equipo; solo la purga (ver la sección 10) la retira. SELLAR necesita las dos llaves: BOY y PRO.</p>
+    <div class="tabla-wrap"><table class="tabla">
+      <thead><tr><th>Función</th><th>FREE</th><th>BOY</th><th>PRO</th></tr></thead>
+      <tbody>
+        <tr><td>Ver ENTORNO, reproducir y manejar la cola (poner en cola, limpiarla)</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Subir canciones y documentos dentro del espacio</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Ver y reproducir vídeos</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Repetir, aleatorio y quitar una canción de la cola</td><td>No</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Mandar a la papelera; restaurar desde la papelera</td><td>No</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Editar documentos y código; crear un documento nuevo</td><td>No</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Subir vídeos; patrones de uso</td><td>No</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Descargar música (1 a la vez con BOY; hasta 3 con PRO)</td><td>No</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Enseñar órdenes, sinónimos y memoria a largo plazo; búsquedas en internet</td><td>No</td><td>Sí</td><td>Sí</td></tr>
+        <tr><td>Crear carpetas, renombrar, cortar y pegar; subir o bajar canciones en la cola</td><td>No</td><td>No</td><td>Sí</td></tr>
+        <tr><td>Eliminar para siempre desde la papelera; vaciar la papelera</td><td>No</td><td>No</td><td>Sí</td></tr>
+        <tr><td>Supervisor completo, reparar y limpiar la biblioteca</td><td>No</td><td>No</td><td>Sí</td></tr>
+        <tr><td>Varias órdenes encadenadas en una frase</td><td>No</td><td>No</td><td>Sí</td></tr>
+        <tr><td>La sección PROGRAMA (código, modelos y datos)</td><td>No</td><td>No</td><td>Sí</td></tr>
+        <tr><td>SELLAR el código</td><td>No</td><td colspan="2">Necesita BOY y PRO</td></tr>
+      </tbody>
+    </table></div>
+    <p class="nota">Si falta una llave, la terminal explica cuál. Por voz, MILLER solo dice «Negativo. Necesito la llave BOY, señor». Las llaves no se dicen en voz alta.</p>
+
+    <h2 id="espacio">6. Espacio</h2>
+    <p>MILLER limita cuánto puede crecer en el disco según el plan. Solo cuentan los datos que él genera y sus archivos: el programa, las voces y los modelos no gastan cuota.</p>
+    <div class="tabla-wrap"><table class="tabla">
+      <thead><tr><th>Plan</th><th>Aprendizaje (datos)</th><th>Archivos (audios)</th></tr></thead>
+      <tbody>
+        <tr><td>FREE</td><td>1 GB</td><td>1 GB</td></tr>
+        <tr><td>BOY</td><td>2 GB</td><td>8 GB</td></tr>
+        <tr><td>PRO</td><td colspan="2">Hasta el 90 % del espacio libre del disco, con 1 GB que nunca se toca. El 30 % es para el aprendizaje y el resto para los archivos.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Cuando el disco queda con menos del 5 % libre, MILLER avisa y archiva con cuidado. Con menos del 2 % libre no descarga nada. Si quedan menos de 16 MB libres, no guarda recuerdos nuevos.</p>
+
+    <h2 id="aprendizaje">7. Aprendizaje</h2>
+    <ul>
+      <li><b>Alias.</b> Si usted reformula una orden, MILLER la guarda como alias para la próxima vez. Las palabras mal oídas también se corrigen (por ejemplo, «reprodusir» → «reproducir»).</li>
+      <li><b>Desaprender.</b> «Miller, eso no era» olvida lo que hizo con la última frase y la veta para esa orden. Con la corrección, aprende la buena: «Miller, eso no era, era pausa la música».</li>
+      <li><b>Opuestos.</b> Nunca aprende que «subir» y «bajar», ni «siguiente» y «anterior», son lo mismo.</li>
+      <li><b>Curva de aprendizaje.</b> Muestra su progreso en el panel de MILLER.</li>
+      <li><b>Patrones (BOY).</b> «Miller, qué patrones has detectado» enseña las rutinas que ha notado. Nunca ejecuta nada solo: si pide lo mismo a la misma hora tres días o más, lo propone y espera su permiso.</li>
+    </ul>
+
+    <h2 id="modelos">8. Modelos opcionales</h2>
+    <p>El instalador ya trae el reconocimiento de voz, la voz en español y FFmpeg. Los modelos de lenguaje Qwen 2.5 son complementos opcionales: sus nombres exactos, tamaños y fuentes están en la página <a href="descargas.html#modelos">Descargas</a>.</p>
+    <p>Se suben una vez desde <b>PERFIL › COMPLEMENTOS IA</b>, con el botón SUBIR .GGUF, que abre el explorador de Windows. Solo se aceptan los nombres de la lista; cualquier otro archivo se rechaza. Cada modelo queda en verde cuando está listo, y QUITAR lo deja de usar sin borrar su archivo.</p>
+    <p>El modelo de lenguaje general (Qwen 2.5) entiende las órdenes que las reglas no reconocen. El de código (Qwen 2.5 Coder) solo trabaja en DOCUMENTOS y necesita las llaves BOY y PRO.</p>
+    <p>Sin estos modelos, MILLER funciona igual con sus reglas. Solo hay un modelo cargado a la vez y se descarga de la memoria tras 20 minutos sin uso. El asistente de código solo trabaja en DOCUMENTOS y necesita las llaves BOY y PRO.</p>
+
+    <h2 id="seguridad">9. Seguridad</h2>
+    <ul>
+      <li><b>Datos firmados.</b> Cada archivo de datos lleva una firma HMAC-SHA256 con una clave del equipo (<code>datos\seguridad\clave.bin</code>). Si alguien lo altera, MILLER lo aparta en <code>datos\seguridad\sospechosos\</code> y restaura la copia firmada anterior.</li>
+      <li><b>Llaves.</b> La llave PRO solo existe como huella PBKDF2-HMAC-SHA256 (200 000 iteraciones). El equipo guarda qué llaves están puestas, firmado.</li>
+      <li><b>Archivos bloqueados.</b> No se abren como archivo ni con su programa predeterminado los ejecutables, scripts (.exe, .bat, .ps1, .vbs, .py, .js…), instaladores (.msi, .msix, .appx), accesos (.lnk, .url), imágenes de disco (.iso) ni las macros de Office (.docm, .xlsm…). Tampoco con trucos de nombre como «x.exe.» o flujos de NTFS.</li>
+      <li><b>Integridad del código.</b> SELLAR guarda la huella SHA-256 de cada archivo Python del programa. Al arrancar, MILLER avisa de los cambios que no se sellaron.</li>
+      <li><b>Órdenes.</b> Un límite de frecuencia frena las ráfagas de órdenes. Los programas se abren solo desde un catálogo; el cierre a la fuerza nunca toca procesos del sistema.</li>
+    </ul>
+
+    <h2 id="datos">10. Datos y purga</h2>
+    <p>Todo lo que MILLER guarda está dentro de la carpeta de instalación:</p>
+    <div class="tabla-wrap"><table class="tabla">
+      <thead><tr><th>Carpeta</th><th>Contenido</th></tr></thead>
+      <tbody>
+        <tr><td><code>datos\</code></td><td>Recuerdos, alias, alarmas, favoritas, curva de aprendizaje, emociones, llaves puestas y el nombre.</td></tr>
+        <tr><td><code>datos\seguridad\</code></td><td>La clave del equipo, las firmas y las copias apartadas. No la borre ni la comparta: sin ella no se pueden comprobar las firmas.</td></tr>
+        <tr><td><code>datos\registro\</code></td><td>El registro <code>agenteM.log</code> del programa instalado.</td></tr>
+        <tr><td><code>audios\</code></td><td>Su música y la papelera de la biblioteca.</td></tr>
+        <tr><td><code>modelos\</code></td><td>Voz, reconocimiento, FFmpeg y, si los pone, los modelos Qwen en <code>modelos\ia\</code>.</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>PURGAR</b> (botón en PERFIL) restablece MILLER de fábrica: borra recuerdos, cachés, el nombre, las llaves puestas y los archivos de ENTORNO. Conserva el código, los modelos y el núcleo de seguridad. Al pulsarlo, MILLER se despide en voz alta antes de borrar nada.</p>
+
+    <h2 id="estructura">11. Estructura y arquitectura</h2>
+    <p>Cada orden pasa por las mismas etapas:</p>
+    <pre class="bloque"><code>micrófono → escuchador (Vosk) → activador (su nombre) → cerebro (intención)
+          → comandos (permisos y ejecución) → módulo (audio, sistema, memoria)
+          → respuesta (voz y terminal)</code></pre>
+    <p>El cerebro decide qué quiere usted. Los comandos comprueban las llaves y ejecutan. Los módulos hacen el trabajo. Así, un cambio en la música no afecta a la voz, y los permisos se revisan en un solo lugar.</p>
+    <pre class="bloque"><code>principal.py        punto de entrada: arranque, bucle de voz o texto y cierre
+configuracion.py    ajustes generales (voz, cuotas, modelos, cierre)
+cerebro/            decisión: intención, comandos, memoria, emociones, aprendizaje
+audio/              reproductor, cola, fundidos y supervisor de la biblioteca
+voz/                escuchador (micrófono y Vosk), hablador (Piper y Windows), activador
+interfaz/           ventana de la esencia, panel MILLER, ENTORNO y documentos
+utilidades/         sistema, internet, alarmas, llaves, cuotas, seguridad e instalador
+empaquetado/        agenteM.spec, instalador.py y construir.py
+test/               pruebas de cada módulo (no tocan sus datos)
+webagenteM/         este sitio web</code></pre>
+
+    <h2 id="compilar">12. Crear el programa y el instalador</h2>
+    <p>Desde la carpeta del proyecto, con Python 3.13 y PyInstaller instalados:</p>
+    <pre class="bloque"><code>python empaquetado\construir.py</code><button class="copy" data-copy="python empaquetado\construir.py" aria-label="Copiar comando">COPIAR</button></pre>
+    <ol class="pasos">
+      <li><h3>Entorno</h3><p>Comprueba Python, PyInstaller, los modelos imprescindibles y el icono.</p></li>
+      <li><h3>agenteM.exe</h3><p>Compila el programa en modo carpeta y sin ventana de consola (<code>empaquetado\agenteM.spec</code>).</p></li>
+      <li><h3>Paquete</h3><p>Reúne solo lo necesario: el programa, el icono, el LEEME, los modelos de voz y FFmpeg. No incluye datos, música, modelos Qwen ni pruebas.</p></li>
+      <li><h3>Comprobación</h3><p>Abre el programa en modo de comprobación: carga cada librería y cada modelo. Si algo falla, no se crea el instalador.</p></li>
+      <li><h3>Instalador</h3><p>Genera <code>empaquetado\salida\Instalar_AgenteMILLER_0.1.0.exe</code> y el desinstalador.</p></li>
+    </ol>
+    <p class="nota">La opción <code>--rapido</code> no vuelve a compilar el programa si ya está hecho.</p>
+
+    <h2 id="pruebas">13. Pruebas</h2>
+    <p>Cada prueba es un archivo de <code>test\</code> que se ejecuta sola, en una carpeta temporal:</p>
+    <pre class="bloque"><code>python test\probar_cierre.py
+python test\probar_instalador_escritorio.py
+python test\probar_mejoras_entorno.py</code></pre>
+    <p class="nota">Las pruebas nunca escriben en los datos del usuario: usan una clave de prueba y carpetas temporales.</p>
+
+    <h2 id="registro">14. Registro y fallos</h2>
+    <p>En el programa instalado, lo que MILLER escribiría en una consola se guarda en <code>datos\registro\agenteM.log</code>, con una línea por arranque. Al cerrar, el cierre se anota paso a paso. Si el apagado tarda más de 20 segundos, el registro indica en qué paso se quedó. Si el registro supera 2 MB, el archivo anterior pasa a <code>agenteM.log.1</code>.</p>
+    <p>Para comprobar un paquete sin abrir la ventana: <code>agenteM.exe --comprobar-paquete informe.json</code>.</p>
+
+    <h2 id="biblioteca">15. Biblioteca y supervisor</h2>
+    <p>El supervisor vigila su biblioteca de audios en segundo plano. Solo funciona completo con la llave PRO; sin ella, un registro pasivo anota lo que se manda a la papelera.</p>
+    <ul>
+      <li><b>Revisiones.</b> Cada 120 segundos hace una revisión completa, y revisa de inmediato cuando cambia la biblioteca.</li>
+      <li><b>Modo cuarentena.</b> Lo problemático no se borra: se traslada a la cuarentena (<code>audios\cuarentena\</code>), donde se puede restaurar.</li>
+      <li><b>Eliminación automática.</b> Está activada. Pasados los días del plan, el supervisor borra para siempre lo que sigue en cuarentena: 15 días para las canciones dañadas, 7 días para las duplicadas y las adulteradas reparadas. Las adulteradas no se borran solas. Para desactivarlo, ponga <code>SUPERVISOR_ELIMINACION_AUTOMATICA = False</code> en <code>configuracion.py</code>.</li>
+      <li><b>Papelera.</b> Lo que usted manda a la papelera se vacía sola a los 30 días. Restaurar pide la llave BOY o PRO.</li>
+    </ul>
+    <p class="nota">Si quiere revisar antes de que se borre algo, consulte la cuarentena con «Miller, qué hay en cuarentena» y el plan con «Miller, plan de eliminación».</p>
+
+    <h2 id="configuracion">16. Configuración</h2>
+    <p>Los ajustes están en <code>configuracion.py</code>, con un comentario al lado de cada valor. Al cambiar un valor, reinicie MILLER. Los más usados:</p>
+    <div class="tabla-wrap"><table class="tabla">
+      <thead><tr><th>Ajuste</th><th>Valor por defecto</th><th>Qué controla</th></tr></thead>
+      <tbody>
+        <tr><td><code>VOZ_VELOCIDAD</code></td><td>185</td><td>Palabras por minuto de la voz.</td></tr>
+        <tr><td><code>VOZ_MOTOR</code></td><td><code>"neural"</code></td><td>Voz de Piper (<code>"neural"</code>) o voz de Windows (<code>"sapi5"</code>).</td></tr>
+        <tr><td><code>CONVERSACION_VENTANA</code></td><td>8 s</td><td>Tiempo para seguir hablando sin decir el nombre.</td></tr>
+        <tr><td><code>CONVERSACION_FIN_INACTIVIDAD</code></td><td>90 s</td><td>Silencio que cuelga el modo llamada.</td></tr>
+        <tr><td><code>ATENUACION_FACTOR</code></td><td>0,40</td><td>Volumen de la música mientras MILLER habla.</td></tr>
+        <tr><td><code>VOLUMEN_DURACION_FUNDIDO</code></td><td>0,9 s</td><td>Duración del fundido al subir o bajar el volumen.</td></tr>
+        <tr><td><code>NOMBRE_LONGITUD_MINIMA</code> / <code>MAXIMA</code></td><td>3 / 20</td><td>Longitud permitida para el nombre del asistente.</td></tr>
+        <tr><td><code>SUPERVISOR_INTERVALO</code></td><td>120 s</td><td>Tiempo entre revisiones completas de la biblioteca.</td></tr>
+        <tr><td><code>SUPERVISOR_MODO</code></td><td><code>"cuarentena"</code></td><td>Mover a cuarentena (<code>"observar"</code> solo registra).</td></tr>
+        <tr><td><code>MODELO_IA_DESCARGAR_TRAS_S</code></td><td>1200 s</td><td>Tiempo sin uso antes de sacar Qwen de la memoria.</td></tr>
+        <tr><td><code>MODELO_IA_CONTEXTO</code></td><td>2048</td><td>Tamaño de contexto del modelo general (más memoria).</td></tr>
+        <tr><td><code>CUOTA_ACTIVA</code></td><td><code>True</code></td><td>Aplica los límites de espacio por plan.</td></tr>
+        <tr><td><code>INTERFAZ_MAXIMIZADA</code></td><td><code>True</code></td><td>Ventana a pantalla completa; <code>False</code> = 720 px.</td></tr>
+        <tr><td><code>CIERRE_MAXIMO_SEGUNDOS</code></td><td>20 s</td><td>Tiempo máximo del apagado ordenado.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="cambios">17. Cambios de la versión 0.1.0</h2>
+    <ul>
+      <li><b>Programa de escritorio.</b> <code>agenteM.exe</code> sin ventana de consola, con registro en <code>datos\registro\</code> y una sola instancia.</li>
+      <li><b>Instalador.</b> Asistente de Windows, instalación por usuario, accesos directos, actualización que conserva los datos y desinstalador.</li>
+      <li><b>Cierre.</b> El apagado tiene un límite de 20 segundos y anota en qué paso se queda.</li>
+      <li><b>Llaves.</b> Qwen Coder y SELLAR piden las dos llaves (BOY y PRO). Las pruebas dejaron de modificar sus datos.</li>
+      <li><b>Alarmas.</b> «Quita todas las alarmas» cancela todas; con varias y sin hora, MILLER pregunta cuál.</li>
+      <li><b>Seguridad.</b> Bloqueo de scripts en cualquier nombre (.py, .pyw y accesos de Windows) y de nombres con trucos.</li>
+      <li><b>Supervisor.</b> El reintento de encendido espera cada vez más (5 s a 60 s) y avisa una sola vez.</li>
+    </ul>
+  </article>
+</div>
+
+<footer class="footer">
+  <a class="brand" href="index.html"><span class="brand-mark">M</span><span>AGENTE MILLER<span class="brand-sub">ASISTENTE DE VOZ LOCAL</span></span></a>
+  <p>Documentación oficial de Agente MILLER 0.1.0 para Windows.</p>
+  <div><a href="descargas.html">Descargas</a><a href="instalacion.html">Instalación</a><a href="documentacion.html">Documentación</a><a href="tecnologias.html">Tecnologías</a><span>© <span id="year"></span></span></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite">Copiado al portapapeles</div>
+<script src="script.js"></script>
+</body>
+</html>
