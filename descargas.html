@@ -57,19 +57,21 @@
   <h2 id="modelos">Modelos y componentes</h2>
   <p>El instalador ya incluye los componentes marcados como <b>incluido</b>. Los demás son opcionales y se añaden desde la propia aplicación o desde su fuente oficial.</p>
   <div class="tabla-wrap"><table class="tabla tabla-modelos">
-    <thead><tr><th>Componente</th><th>Archivo o nombre exacto</th><th>Tamaño aprox.</th><th>Dónde está</th><th>Para qué</th></tr></thead>
+    <thead><tr><th>Componente</th><th>Archivo</th><th>Tamaño</th><th>Descarga</th><th>Licencia</th></tr></thead>
     <tbody>
-      <tr><td><b>Reconocimiento de voz</b> <span class="chip">incluido</span></td><td><code>vosk-model-small-es-0.42</code></td><td>40 MB</td><td><a href="https://alphacephei.com/vosk/models">alphacephei.com/vosk/models</a></td><td>Entender las órdenes en español.</td></tr>
-      <tr><td><b>Voz masculina en español</b> <span class="chip">incluido</span></td><td><code>es_ES-davefx-medium</code> (Piper)</td><td>65 MB</td><td><a href="https://github.com/k2-fsa/sherpa-onnx/releases">sherpa-onnx, versión tts-models</a></td><td>La voz de MILLER.</td></tr>
-      <tr><td><b>FFmpeg y ffprobe</b> <span class="chip">incluido</span></td><td><code>ffmpeg-master-latest-win64-gpl</code></td><td>130 MB</td><td><a href="https://github.com/BtbN/FFmpeg-Builds/releases">BtbN/FFmpeg-Builds</a></td><td>Medir, reparar y descargar música.</td></tr>
-      <tr><td><b>Qwen 2.5 general</b> <span class="chip chip-opcional">opcional</span></td><td><code>qwen2.5-1.5b-instruct-q4_k_m.gguf</code> o <code>qwen2.5-3b-instruct-q4_k_m.gguf</code></td><td>Más de 1 GB (1.5B)</td><td><a href="https://huggingface.co/Qwen">Organización Qwen en Hugging Face</a></td><td>Órdenes difíciles y conversación.</td></tr>
-      <tr><td><b>Qwen 2.5 Coder</b> <span class="chip chip-opcional">opcional</span></td><td><code>qwen2.5-coder-1.5b-instruct-q4_k_m.gguf</code> o <code>qwen2.5-coder-3b-instruct-q4_k_m.gguf</code></td><td>Más de 1 GB (1.5B)</td><td><a href="https://huggingface.co/Qwen">Organización Qwen en Hugging Face</a></td><td>Ayuda con archivos de código en DOCUMENTOS.</td></tr>
+      <tr><td><b>Reconocimiento de voz</b> <span class="chip">incluido</span></td><td><code>vosk-model-small-es-0.42</code></td><td>38 MB</td><td><a href="https://github.com/0tizz/webagentem/releases/download/modelos-0.1.0/vosk-model-small-es-0.42.zip">Copia de MILLER</a> · <a href="https://alphacephei.com/vosk/models">Oficial</a></td><td>Apache-2.0</td></tr>
+      <tr><td><b>Voz masculina en español</b> <span class="chip">incluido</span></td><td><code>es_ES-davefx-medium</code> (Piper)</td><td>56 MB</td><td><a href="https://github.com/0tizz/webagentem/releases/download/modelos-0.1.0/piper-es_ES-davefx-medium.zip">Copia de MILLER</a> · <a href="https://huggingface.co/rhasspy/piper-voices">Oficial</a></td><td>MIT</td></tr>
+      <tr><td><b>FFmpeg y ffprobe</b> <span class="chip">incluido</span></td><td><code>ffmpeg-master-gpl</code></td><td>126 MB</td><td><a href="https://github.com/0tizz/webagentem/releases/download/modelos-0.1.0/ffmpeg-master-gpl.zip">Copia de MILLER</a> · <a href="https://github.com/BtbN/FFmpeg-Builds">Oficial</a></td><td>GPL-3.0 · <a href="https://ffmpeg.org/download.html">código fuente</a></td></tr>
+      <tr><td><b>Qwen 2.5 general 1.5B</b> <span class="chip chip-opcional">opcional</span></td><td><code>qwen2.5-1.5b-instruct-q4_k_m.gguf</code></td><td>1,04 GB</td><td><a href="https://github.com/0tizz/webagentem/releases/download/modelos-0.1.0/qwen2.5-1.5b-instruct-q4_k_m.gguf">Copia de MILLER</a> · <a href="https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct">Oficial</a></td><td>Apache-2.0</td></tr>
+      <tr><td><b>Qwen 2.5 Coder 1.5B</b> <span class="chip chip-opcional">opcional</span></td><td><code>qwen2.5-coder-1.5b-instruct-q4_k_m.gguf</code></td><td>1,04 GB</td><td><a href="https://github.com/0tizz/webagentem/releases/download/modelos-0.1.0/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf">Copia de MILLER</a> · <a href="https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct">Oficial</a></td><td>Apache-2.0</td></tr>
+      <tr><td><b>Qwen 2.5 general 3B</b> <span class="chip chip-opcional">opcional</span></td><td><code>qwen2.5-3b-instruct-q4_k_m.gguf</code></td><td>Mayor que 1,04 GB</td><td><a href="https://huggingface.co/Qwen">Solo fuente oficial (Qwen en Hugging Face)</a></td><td>Revisar la ficha</td></tr>
+      <tr><td><b>Qwen 2.5 Coder 3B</b> <span class="chip chip-opcional">opcional</span></td><td><code>qwen2.5-coder-3b-instruct-q4_k_m.gguf</code></td><td>Mayor que 1,04 GB</td><td><a href="https://huggingface.co/Qwen">Solo fuente oficial (Qwen en Hugging Face)</a></td><td>Revisar la ficha</td></tr>
     </tbody>
   </table></div>
   <div class="aviso-callout">
     <b>Nombres exactos.</b>
-    <p>MILLER solo acepta los nombres de la tabla, sin cambiar ni una letra. Busque el archivo en la página oficial, descárguelo y súbalo en PERFIL › COMPLEMENTOS IA. Los tamaños son aproximados y dependen de la versión publicada.</p>
-    <p><b>Licencias.</b> Cada modelo tiene su ficha y sus condiciones de uso; antes de redistribuirlo, revise la ficha oficial. FFmpeg se distribuye bajo GPL.</p>
+    <p>MILLER solo acepta los nombres de la tabla, sin cambiar ni una letra. La copia de MILLER es el mismo archivo que usa el programa; también puede descargar el original de la fuente oficial.</p>
+    <p><b>Licencias.</b> Cada componente conserva su licencia; FFmpeg se distribuye bajo GPL-3.0 y su código fuente está en los enlaces de la tabla. Los modelos Qwen 3B no tienen copia aquí: revise su ficha antes de usarlos.</p>
   </div>
 
   <h2 id="comprobar">Comprobar la instalación</h2>
